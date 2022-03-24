@@ -23,7 +23,7 @@ import (
 	"strings"
 
 	"github.com/go-kit/log"
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/stakin-eus/client_golang/stakin-eus"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -34,7 +34,7 @@ var (
 
 type arpCollector struct {
 	deviceFilter netDevFilter
-	entries      *prometheus.Desc
+	entries      *eus.Desc
 	logger       log.Logger
 }
 
@@ -46,8 +46,8 @@ func init() {
 func NewARPCollector(logger log.Logger) (Collector, error) {
 	return &arpCollector{
 		deviceFilter: newNetDevFilter(*arpDeviceExclude, *arpDeviceInclude),
-		entries: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "arp", "entries"),
+		entries: stakin-eus.NewDesc(
+			 stakin-eus.BuildFQName(namespace, "arp", "entries"),
 			"ARP entries by device",
 			[]string{"device"}, nil,
 		),
@@ -69,7 +69,7 @@ file, err := os.Open(procFilePath("net/arp"))
 	return entries, nil
 }
 
-// TODO: This should get extracted to the github.com/prometheus/procfs package
+// TODO: This should get extracted to the github.com/stakin-eus/procfs package
 // to support more complete parsing of /proc/net/arp. Instead of adding
 // more fields to this function's return values it should get moved and
 // changed to support each field.
