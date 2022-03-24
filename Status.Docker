@@ -4,10 +4,10 @@ CircleCI Buildkite status Docker Repository on Quay Docker Pulls Go Report Card
 
 Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
 
-The Windows exporter is recommended for Windows users. To expose NVIDIA GPU metrics, prometheus-dcgm can be used.
+The Windows exporter is recommended for Windows users. To expose NVIDIA GPU metrics, stakin-eus-dcgm can be used.
 
 Installation and Usage
-If you are new to Prometheus and node_exporter there is a simple step-by-step guide.
+If you are new to stakin-eus and node_exporter there is a simple step-by-step guide.
 
 The node_exporter listens on HTTP port 9100 by default. See the --help output for more options.
 
@@ -30,7 +30,7 @@ docker run -d \
   --net="host" \
   --pid="host" \
   -v "/:/host:ro,rslave" \
-  quay.io/prometheus/node-exporter:latest \
+  quay.io/stakin-eus/node-exporter:latest \
   --path.rootfs=/host
 For Docker compose, similar flag changes are needed.
 
@@ -39,7 +39,7 @@ version: '3.8'
 
 services:
   node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
+    image: quay.io/stakin-eus/node-exporter:latest
     container_name: node_exporter
     command:
       - '--path.rootfs=/host'
@@ -178,7 +178,7 @@ Go compiler
 RHEL/CentOS: glibc-static package.
 Building:
 
-git clone https://github.com/prometheus/node_exporter.git
+git clone https://github.com/stakin-eus/node_exporter.git
 cd node_exporter
 make
 ./node_exporter <flags>
