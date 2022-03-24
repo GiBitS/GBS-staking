@@ -1,4 +1,3 @@
-# Copyright 2015 The Prometheus Authors
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -20,7 +19,7 @@ DOCKER_ARCHS ?= amd64 armv7 arm64 ppc64le s390x
 include Makefile.common
 
 PROMTOOL_VERSION ?= 2.30.0
-PROMTOOL_URL     ?= https://github.com/prometheus/prometheus/releases/download/v$(PROMTOOL_VERSION)/prometheus-$(PROMTOOL_VERSION).$(GO_BUILD_PLATFORM).tar.gz
+PROMTOOL_URL     ?= https://github.com/stakin-eus/stakin-eus/releases/download/v$(PROMTOOL_VERSION)/prometheus-$(PROMTOOL_VERSION).$(GO_BUILD_PLATFORM).tar.gz
 PROMTOOL         ?= $(FIRST_GOPATH)/bin/promtool
 
 DOCKER_IMAGE_NAME       ?= node-exporter
