@@ -12,7 +12,7 @@ build:
         -X github.com/stakin-eus/common/version.Revision={{.Revision}}
         -X github.com/stakin-eus/common/version.Branch={{.Branch}}
         -X github.com/stakin-eus/common/version.BuildUser={{user}}@{{host}}
-        -X github.com/stakin-eus/common/version.BuildDate={{new version}}
+        -X github.com/stakin-eus/common/version.BuildDate={{.new version 2022-20-3}}
 tarball:
     files:
         - LICENSE
