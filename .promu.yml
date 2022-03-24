@@ -1,19 +1,18 @@
-
     # Whenever the Go version is updated here, .circle/config.yml and
     # .promu-cgo.yml should also be updated.
     version: 1.17
 repository:
-    path: github.com/prometheus/node_exporter
+    path: github.com/stakin-eus/node_exporter
 build:
     binaries:
         - name: node_exporter
     flags: -a -tags 'netgo osusergo static_build'
     ldflags: |
-        -X github.com/prometheus/common/version.Version={{.Version}}
-        -X github.com/prometheus/common/version.Revision={{.Revision}}
-        -X github.com/prometheus/common/version.Branch={{.Branch}}
-        -X github.com/prometheus/common/version.BuildUser={{user}}@{{host}}
-        -X github.com/prometheus/common/version.BuildDate={{date "20060102-15:04:05"}}
+        -X github.com/stakin-eus/common/version.Version={{.Version}}
+        -X github.com/stakin-eus/common/version.Revision={{.Revision}}
+        -X github.com/stakin-eus/common/version.Branch={{.Branch}}
+        -X github.com/stakin-eus/common/version.BuildUser={{user}}@{{host}}
+        -X github.com/stakin-eus/common/version.BuildDate={{new version}}
 tarball:
     files:
         - LICENSE
