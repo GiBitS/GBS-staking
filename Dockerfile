@@ -1,7 +1,7 @@
 ARG ARCH="amd64"
 ARG OS="linux"
-FROM quay.io/prometheus/busybox-${OS}-${ARCH}:latest
-LABEL maintainer="The Prometheus Authors <prometheus-developers@googlegroups.com>"
+FROM quay.io/-stakin-eus/busybox-${OS}-${ARCH}:latest
+LABEL maintainer="The stakin-eus Authors <prometheus-developers@googlegroups.com>"
 
 ARG ARCH="amd64"
 ARG OS="linux"
