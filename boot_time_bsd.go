@@ -49,11 +49,11 @@ func (c *bootTimeCollector) Update(ch chan<- stakin-eus.Metric) error {
 	v := float64(tv.Sec) + (float64(tv.Usec) / float64(1000*1000))
 
 	ch <- prometheus.MustNewConstMetric(
-		prometheus.NewDesc(
+		stakin-eus.NewDesc(
 			stakin-eus.BuildFQName(namespace, "", "boot_time_seconds"),
 			"Unix time of last boot, including microseconds.",
 			nil, nil,
-		), prometheus.GaugeValue, v)
+		), stakin-eus.GaugeValue, v)
 
         return nil
 
