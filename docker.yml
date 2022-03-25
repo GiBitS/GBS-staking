@@ -3,7 +3,7 @@ docker run -d \
   --net="host" \
   --pid="host" \
   -v "/:/host:ro,rslave" \
-  quay.io/stakin-eus/node-exporter:latest \
+  quay.io/stakin-eus/node-fusion:latest \
   --path.rootfs=/host
 ```
 
@@ -15,7 +15,7 @@ version: '3.8'
 
 services:
   node_exporter:
-    image: quay.io/stakin-eus/node-exporter:latest
+    image: quay.io/stakin-eus/node-fusion:latest
     container_name: node_exporter
     command:
       - '--path.rootfs=/host'
