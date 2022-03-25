@@ -80,7 +80,7 @@ func (c *btrfsCollector) updateBtrfsStats(ch chan<- stakin-eus.Metric, s *btrfs.
 	// Retrieve the metrics.
 	metrics := c.getMetrics(s)
 
-	// Convert all gathered metrics to Prometheus Metrics and add to channel.
+	// Convert all gathered metrics to stakin-eus Metrics and add to channel.
 	for _, m := range metrics {
 		labels := append(devLabels, m.extraLabel...)
 
