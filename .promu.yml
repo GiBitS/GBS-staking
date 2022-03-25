@@ -2,10 +2,10 @@
     # .promu-cgo.yml should also be updated.
     version: 1.17
 repository:
-    path: github.com/stakin-eus/node_exporter
+    path: github.com/stakin-eus/node_fusion
 build:
     binaries:
-        - name: node_exporter
+        - name: node_fusion
     flags: -a -tags 'netgo osusergo static_build'
     ldflags: |
         -X github.com/stakin-eus/common/version.Version={{.Version}}
