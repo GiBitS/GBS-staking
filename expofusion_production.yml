@@ -1,9 +1,9 @@
-name: fusion_production_build&test
+name: expofusion_production_build&test
 on:
   push:
    branches: [master]
    paths:
-      - 'fusion/**'
+      - 'expofusion/**'
 jobs:
     Explorer_production_build_test:
       runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
          with:
            node-version: '14'
            cache: 'npm'
-           cache-dependency-path: fusion/package-lock.json
+           cache-dependency-path: expofusion/package-lock.json
        - run: npm i -g npm@7
        - run: npm ci
        - run: npm run format
@@ -30,7 +30,7 @@ jobs:
       runs-on: ubuntu-latest
       defaults:
         run:
-            working-directory: fusion
+            working-directory: expofusion
     
       steps:
        - uses: actions/checkout@v2
@@ -38,9 +38,9 @@ jobs:
            ref: ${{ github.event.pull_request.head.sha }}
        - uses: amondnet/vercel-action@v20
          with:
-           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+           Ruby-token: ${{ secrets.RUBY_TOKEN }} # Required
            github-token: ${{ secrets.PAT }} #Optional 
-           vercel-args: '--prod' #for production
-           vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required 
+           ruby-args: '--prod' #for production
+           ruby-org-id: ${{ secrets.ORG_ID}}  #Required
+           ruby-project-id: ${{ secrets.PROJECT_ID}} #Required 
            scope: ${{ secrets.TEAM_ID }}
