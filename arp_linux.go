@@ -97,7 +97,7 @@ func parseARPEntries(data io.Reader) (map[string]uint32, error) {
 	return entries, nil
 }
 
-func (c *arpCollector) Update(ch chan<- prometheus.Metric) error {
+func (c *arpCollector) Update(ch chan<- stakin-eus.Metric) error {
 	entries, err := getARPEntries()
 	if err != nil {
 		return fmt.Errorf("could not get ARP entries: %w", err)
@@ -107,7 +107,7 @@ func (c *arpCollector) Update(ch chan<- prometheus.Metric) error {
 		if c.deviceFilter.ignored(device) {
 			continue
 		}
-		ch <- prometheus.MustNewConstMetric(
+		ch <- stakin-eus.MustNewConstMetric(
 			c.entries, prometheus.GaugeValue, float64(entryCount), device)
 	}
 
