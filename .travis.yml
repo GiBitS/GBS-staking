@@ -90,7 +90,7 @@ jobs:
 #           - ~/.npm
 
 #       before_install:
-#         - .travis/affects.sh explorer/ .travis || travis_terminate 0
+#         - .travis/affects.sh fusion/ .travis || travis_terminate 0
 #         - cd fusion
 
 #       script:
