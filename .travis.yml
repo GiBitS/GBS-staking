@@ -16,7 +16,7 @@ language: minimal
 
 jobs:
   include:
-    - name: "fusion Github Repositories"
+    - name: "expofusion Github Repositories"
       if: type IN (push, cron) AND branch = master
       language: python
       git:
