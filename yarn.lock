@@ -28,7 +28,7 @@ updates:
   open-pull-requests-limit: 3
   
 - package-ecosystem: npm
-  directory: "/explorer"
+  directory: "/expofusion"
   schedule:
     interval: daily
     time: "01:00"
