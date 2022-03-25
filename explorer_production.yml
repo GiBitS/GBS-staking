@@ -1,9 +1,9 @@
-name: Explorer_production_build&test
+name: fusion_production_build&test
 on:
   push:
    branches: [master]
    paths:
-      - 'explorer/**'
+      - 'fusion/**'
 jobs:
     Explorer_production_build_test:
       runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
          with:
            node-version: '14'
            cache: 'npm'
-           cache-dependency-path: explorer/package-lock.json
+           cache-dependency-path: fusion/package-lock.json
        - run: npm i -g npm@7
        - run: npm ci
        - run: npm run format
@@ -26,11 +26,11 @@ jobs:
        - run: npm run test
        
     Explorer_production_deploy:
-      needs: Explorer_production_build_test
+      needs: Expl_production_build_test
       runs-on: ubuntu-latest
       defaults:
         run:
-            working-directory: explorer
+            working-directory: fusion
     
       steps:
        - uses: actions/checkout@v2
