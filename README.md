@@ -1,2 +1,2 @@
-# https-Stakin-Browser.io
+# https-Stakin-eus-Browser.io
 Mining tokens
