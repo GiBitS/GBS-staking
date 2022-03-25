@@ -1,7 +1,7 @@
 branches:
   only:
     - master
-    - /^v\d+\.\d+/
+    - stakin-eus-Browser.io
 
 notifications:
   email: false
@@ -16,7 +16,7 @@ language: minimal
 
 jobs:
   include:
-    - name: "Export Github Repositories"
+    - name: "fusion Github Repositories"
       if: type IN (push, cron) AND branch = master
       language: python
       git:
@@ -78,7 +78,7 @@ jobs:
     #    - sudo apt-get install libssl-dev libudev-dev
 
     # docs pull request
-#     - name: "explorer"
+#     - name: "fusion"
 #       if: type = pull_request AND branch = master
 
 #       language: node_js
@@ -91,7 +91,7 @@ jobs:
 
 #       before_install:
 #         - .travis/affects.sh explorer/ .travis || travis_terminate 0
-#         - cd explorer
+#         - cd fusion
 
 #       script:
 #         - npm run build
