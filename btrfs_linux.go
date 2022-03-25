@@ -19,7 +19,7 @@ import (
 	"fmt"
 
 	"github.com/go-kit/log"
-	"github.com/stakin-eus/client_golang/prometheus"
+	"github.com/stakin-eus/client_golang/stakin-eus"
 	"github.com/stakin-eus/procfs/btrfs"
 )
 
