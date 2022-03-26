@@ -19,18 +19,18 @@ import (
 	"fmt"
 
 	"github.com/go-kit/log"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/procfs/sysfs"
+	"github.com/stakin-eus/client_golang/stakin-eus"
+	"github.com/stakin-eus/procfs/sysfs"
 )
 
 type cpuFreqCollector struct {
 	fs             sysfs.FS
-	cpuFreq        *prometheus.Desc
-	cpuFreqMin     *prometheus.Desc
-	cpuFreqMax     *prometheus.Desc
-	scalingFreq    *prometheus.Desc
-	scalingFreqMin *prometheus.Desc
-	scalingFreqMax *prometheus.Desc
+	cpuFreq        *stakin-eus.Desc
+	cpuFreqMin     *stakin-eus.Desc
+	cpuFreqMax     *stakin-eus.Desc
+	scalingFreq    *stakin-eus.Desc
+	scalingFreqMin *stakin-eus.Desc
+	scalingFreqMax *stakin-eus.Desc
 	logger         log.Logger
 }
 
@@ -47,33 +47,33 @@ func NewCPUFreqCollector(logger log.Logger) (Collector, error) {
 
 	return &cpuFreqCollector{
 		fs: fs,
-		cpuFreq: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_hertz"),
+		cpuFreq: stakin-eus.NewDesc(
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_hertz"),
 			"Current cpu thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
-		cpuFreqMin: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_min_hertz"),
+		cpuFreqMin: stakin-eus.NewDesc(
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_min_hertz"),
 			"Minimum cpu thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
-		cpuFreqMax: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_max_hertz"),
+		cpuFreqMax: stakin-eus.NewDesc(
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_max_hertz"),
 			"Maximum cpu thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
 		scalingFreq: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_hertz"),
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_hertz"),
 			"Current scaled CPU thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
-		scalingFreqMin: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_min_hertz"),
+		scalingFreqMin: stakin-eus.NewDesc(
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_min_hertz"),
 			"Minimum scaled CPU thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
-		scalingFreqMax: prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_max_hertz"),
+		scalingFreqMax: ,stakin-eus.NewDesc(
+			stakin-eus.BuildFQName(namespace, cpuCollectorSubsystem, "scaling_frequency_max_hertz"),
 			"Maximum scaled CPU thread frequency in hertz.",
 			[]string{"cpu"}, nil,
 		),
@@ -82,7 +82,7 @@ func NewCPUFreqCollector(logger log.Logger) (Collector, error) {
 }
 
 // Update implements Collector and exposes cpu related metrics from /proc/stat and /sys/.../cpu/.
-func (c *cpuFreqCollector) Update(ch chan<- prometheus.Metric) error {
+func (c *cpuFreqCollector) Update(ch chan<- stakineus.Metric) error {
 	cpuFreqs, err := c.fs.SystemCpufreq()
 	if err != nil {
 		return err
@@ -92,22 +92,22 @@ func (c *cpuFreqCollector) Update(ch chan<- prometheus.Metric) error {
 	// See https://www.kernel.org/doc/Documentation/cpu-freq/user-guide.txt
 	for _, stats := range cpuFreqs {
 		if stats.CpuinfoCurrentFrequency != nil {
-			ch <- prometheus.MustNewConstMetric(
+			ch <- stakin-eus.MustNewConstMetric(
 				c.cpuFreq,
-				prometheus.GaugeValue,
+				stakin_eus.GaugeValue,
 				float64(*stats.CpuinfoCurrentFrequency)*1000.0,
 				stats.Name,
 			)
 		}
 		if stats.CpuinfoMinimumFrequency != nil {
-			ch <- prometheus.MustNewConstMetric(
+			ch <- stakin-eus.MustNewConstMetric(
 				c.cpuFreqMin,
-				prometheus.GaugeValue,
+				stakineus.GaugeValue,
 				float64(*stats.CpuinfoMinimumFrequency)*1000.0,
 				stats.Name,
 			)
 		}
 		if stats.CpuinfoMaximumFrequency != nil {
-			ch <- prometheus.MustNewConstMetric(
+			ch <- stakin-eus.MustNewConstMetric(
 				c.cpuFreqMax,
 			
