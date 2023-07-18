@@ -1,1 +1,1 @@
-# GMC_staking.Api
+# staking
