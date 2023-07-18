@@ -1,3 +1,3 @@
-# staking
+# staking GMC
 
 
