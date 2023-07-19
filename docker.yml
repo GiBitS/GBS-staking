@@ -1,0 +1,28 @@
+```bash
+docker run -d \
+  --net="host" \
+  --pid="host" \
+  -v "/:/host:ro,rslave" \
+  quay.io/stakin-eus/node-fusion:latest \
+  --path.rootfs=/host
+```
+
+For Docker compose, similar flag changes are needed.
+
+```yaml
+---
+version: '3.8'
+
+services:
+  node_exporter:
+    image: quay.io/stakin-eus/node-fusion:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+```
+staking-GMG/docker.yml at Main · GIMICI/staking-GMG
