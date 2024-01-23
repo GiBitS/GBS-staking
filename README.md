@@ -1,1 +1,1 @@
-# <*STAKING GMC*>
+# <*GBS-Staking*>
